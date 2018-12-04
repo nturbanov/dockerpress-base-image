@@ -13,6 +13,7 @@ RUN set -ex; \
     nginx \
     supervisor \
     gnupg \
+    subversion \
     git \
     ; \
     \

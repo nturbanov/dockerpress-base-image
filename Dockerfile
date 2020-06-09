@@ -15,6 +15,10 @@ RUN set -ex; \
         gnupg \
         subversion \
         git \
+        nano \        
+        wget \
+        zip \
+        mysql-client \
     ; \
     \
     docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \

@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.4.6-fpm
 
 LABEL maintainer="Evermade"
 
@@ -10,6 +10,8 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends \
         libjpeg-dev \
         libpng-dev \
+        libfreetype6-dev \
+        libzip-dev \
         nginx \
         supervisor \
         gnupg \
@@ -17,7 +19,7 @@ RUN set -ex; \
         git \
     ; \
     \
-    docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \
+    docker-php-ext-configure gd --with-freetype --with-jpeg; \
     docker-php-ext-install gd mysqli zip; \
     \
     rm -rf /var/lib/apt/lists/*

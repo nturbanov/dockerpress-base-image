@@ -15,8 +15,6 @@ RUN set -ex; \
         nginx \
         supervisor \
         gnupg \
-        subversion \
-        git \
         nano \
         wget \
         zip \

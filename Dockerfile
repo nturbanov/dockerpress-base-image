@@ -21,6 +21,9 @@ RUN set -ex; \
         wget \
         zip \
         mariadb-client \
+        # Install certbot
+        certbot \
+        python-certbot-nginx \
     ; \
     \
     docker-php-ext-configure gd --with-freetype --with-jpeg; \
@@ -32,6 +35,3 @@ RUN set -ex; \
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
   && chmod +x wp-cli.phar \
   && mv wp-cli.phar /usr/local/bin/wp
-
-# Install certbot
-RUN apt-get update && apt-get install -y certbot python-certbot-nginx

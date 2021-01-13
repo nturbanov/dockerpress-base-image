@@ -29,9 +29,9 @@ RUN set -ex; \
     docker-php-ext-configure gd --with-freetype --with-jpeg; \
     docker-php-ext-install gd mysqli zip; \
     \
-    rm -rf /var/lib/apt/lists/*
-
-# Install WP-CLI
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-  && chmod +x wp-cli.phar \
-  && mv wp-cli.phar /usr/local/bin/wp
+    rm -rf /var/lib/apt/lists/*; \
+    \
+    # Install WP-CLI
+    curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
+    chmod +x wp-cli.phar; \
+    mv wp-cli.phar /usr/local/bin/wp

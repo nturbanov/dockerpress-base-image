@@ -27,7 +27,7 @@ RUN set -ex; \
     ; \
     \
     docker-php-ext-configure gd --with-freetype --with-jpeg; \
-    docker-php-ext-install gd mysqli zip; \
+    docker-php-ext-install gd mysqli opcache zip; \
     \
     rm -rf /var/lib/apt/lists/*; \
     \

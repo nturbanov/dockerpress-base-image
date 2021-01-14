@@ -20,6 +20,7 @@ RUN set -ex; \
         zip \
         mariadb-client \
         cron \
+        webp \
         # Install certbot
         certbot \
         python-certbot-nginx \

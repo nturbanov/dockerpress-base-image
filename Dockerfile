@@ -12,6 +12,7 @@ RUN set -ex; \
         libpng-dev \
         libfreetype6-dev \
         libzip-dev \
+        libwebp-dev \
         nginx \
         supervisor \
         gnupg \
@@ -25,7 +26,7 @@ RUN set -ex; \
         python-certbot-nginx \
     ; \
     \
-    docker-php-ext-configure gd --with-freetype --with-jpeg; \
+    docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp; \
     docker-php-ext-install gd mysqli opcache zip; \
     \
     rm -rf /var/lib/apt/lists/*; \

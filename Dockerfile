@@ -14,6 +14,7 @@ RUN set -ex; \
         libzip-dev \
         libwebp-dev \
         nginx \
+        libnginx-mod-http-headers-more-filter \
         supervisor \
         gnupg \
         nano \

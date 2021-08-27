@@ -25,7 +25,7 @@ RUN set -ex; \
         sudo \
         # Install certbot
         certbot \
-        python-certbot-nginx \
+        python3-certbot-nginx \
     ; \
     \
     docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp; \

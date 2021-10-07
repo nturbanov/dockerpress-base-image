@@ -8,6 +8,16 @@ RUN set -ex; \
     \
     apt-get update; \
     apt-get install -y --no-install-recommends \
+        apt-transport-https \
+        lsb-release \
+    ; \
+    \
+    # This adds a more frequently updated nginx apt repository
+    curl -o /etc/apt/trusted.gpg.d/nginx.gpg https://packages.sury.org/nginx/apt.gpg; \
+    echo "deb https://packages.sury.org/nginx/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/nginx.list; \
+    \
+    apt-get update; \
+    apt-get install -y --no-install-recommends \
         libjpeg-dev \
         libpng-dev \
         libfreetype6-dev \

@@ -64,13 +64,13 @@ And enjoy!
 
 2. Write a description with the changelog for the release using the following template:
 
-```md
-# Changelog summary
-- Updated PHP base image to [7.4.27](https://www.php.net/ChangeLog-7.php#7.4.27)
+    ```md
+    # Changelog summary
+    - Updated PHP base image to [7.4.27](https://www.php.net/ChangeLog-7.php#7.4.27)
 
-https://hub.docker.com/r/evermadefi/dockerpress-base-image/
-https://github.com/evermade/dockerpress-base-image/pkgs/container/dockerpress-base-image
-```
+    https://hub.docker.com/r/evermadefi/dockerpress-base-image/
+    https://github.com/evermade/dockerpress-base-image/pkgs/container/dockerpress-base-image
+    ```
 
 3. Publish the new release
 

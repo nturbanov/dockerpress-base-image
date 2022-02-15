@@ -29,7 +29,7 @@ FROM evermadefi/dockerpress-base-image:master
 FROM evermadefi/dockerpress-base-image:c4af210325ed5cbc0f9b963ece19e7f7576b1f19
 
 # To use GitHub Container Registry instead of Docker Hub (you can use all the same tags described above)
-FROM ghcr.io/evermadefi/dockerpress-base-image:1.2.16
+FROM ghcr.io/evermade/dockerpress-base-image:1.2.16
 ```
 
 To simply just pull the image or update a stale local copy, run the `docker pull` command like so with the tag you wish you pull:
@@ -38,7 +38,7 @@ To simply just pull the image or update a stale local copy, run the `docker pull
 
 And for GitHub Container Registry, same thing:
 
-`docker pull ghcr.io/evermadefi/dockerpress-base-image:1.2.16`
+`docker pull ghcr.io/evermade/dockerpress-base-image:1.2.16`
 
 And enjoy!
 

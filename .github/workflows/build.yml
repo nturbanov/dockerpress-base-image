@@ -22,6 +22,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
+          flavor: |
+            latest=false
           images: |
             ${{ secrets.DOCKERHUB_USERNAME }}/dockerpress-base-image
             ghcr.io/${{ github.repository_owner }}/dockerpress-base-image

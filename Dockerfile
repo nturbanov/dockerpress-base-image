@@ -34,6 +34,7 @@ RUN set -ex; \
         cron \
         sudo \
         logrotate \
+        less \
         # Install certbot
         certbot \
         python3-certbot-nginx \

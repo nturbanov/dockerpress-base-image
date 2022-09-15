@@ -35,6 +35,7 @@ RUN set -ex; \
         sudo \
         logrotate \
         less \
+        rsyslog \
         # Install certbot
         certbot \
         python3-certbot-nginx \

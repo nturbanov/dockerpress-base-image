@@ -1,4 +1,4 @@
-FROM php:8.0.26-fpm
+FROM php:8.0.27-fpm
 
 LABEL maintainer="Evermade"
 

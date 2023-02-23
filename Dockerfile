@@ -37,7 +37,7 @@ RUN set -ex; \
         # Logging utils
         logrotate \
         rsyslog \
-        expect-dev \
+        expect \
         moreutils \
         # Install certbot
         certbot \

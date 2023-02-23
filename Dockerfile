@@ -33,9 +33,12 @@ RUN set -ex; \
         mariadb-client \
         cron \
         sudo \
-        logrotate \
         less \
+        # Logging utils
+        logrotate \
         rsyslog \
+        expect \
+        moreutils \
         # Install certbot
         certbot \
         python3-certbot-nginx \

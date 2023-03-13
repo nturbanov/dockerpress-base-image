@@ -53,7 +53,8 @@ RUN set -ex; \
     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
     chmod +x wp-cli.phar; \
     mv wp-cli.phar /usr/local/bin/wp; \
+    \
     # Install WP-CLI tab completions
     curl -O https://raw.githubusercontent.com/wp-cli/wp-cli/master/utils/wp-completion.bash; \
     mv wp-completion.bash /etc/wp-completion.bash; \
-    echo 'source /etc/wp-completion.bash' >> /etc/bash.bashrc; \
+    echo 'source /etc/wp-completion.bash' >> /etc/bash.bashrc

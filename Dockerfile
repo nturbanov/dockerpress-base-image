@@ -1,4 +1,4 @@
-FROM php:8.0.29-fpm-bullseye
+FROM php:8.0.30-fpm-bullseye
 
 LABEL maintainer="Evermade"
 

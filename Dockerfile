@@ -64,7 +64,7 @@ RUN set -ex; \
 	; \
 	\
 	# Compile and install PHP extensions
-	docker-php-ext-install \
+	docker-php-ext-install -j "$( nproc )" \
 		gd \
 		mysqli \
 		opcache \

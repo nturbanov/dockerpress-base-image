@@ -91,6 +91,10 @@ RUN set -ex; \
 	pecl install igbinary; \
 	docker-php-ext-enable igbinary; \
 	\
+	# Install PHP Redis extension
+	pecl install redis; \
+	docker-php-ext-enable redis; \
+	\
 	# Cleanup
 	rm -rf /tmp/pear /var/lib/apt/lists/*; \
 	\

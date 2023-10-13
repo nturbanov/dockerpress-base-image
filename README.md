@@ -2,7 +2,6 @@
 
 A great base image for WordPress sites.
 
-
 ## Usage
 
 The base image is available on both [Docker Hub](https://hub.docker.com/r/evermadefi/dockerpress-base-image) and [GitHub Container Registry](https://github.com/evermade/dockerpress-base-image/pkgs/container/dockerpress-base-image).
@@ -11,7 +10,7 @@ We provide multiple tags for images, below are some common examples:
 
 ```dockerfile
 # To use a specific semantic version
-FROM evermadefi/dockerpress-base-image:2.0.16
+FROM evermadefi/dockerpress-base-image:2.0.17
 
 # To use a specific semantic minor version
 FROM evermadefi/dockerpress-base-image:2.0
@@ -20,28 +19,27 @@ FROM evermadefi/dockerpress-base-image:2.0
 FROM evermadefi/dockerpress-base-image:2
 
 # To use a specific tag
-FROM evermadefi/dockerpress-base-image:v2.0.16
+FROM evermadefi/dockerpress-base-image:v2.0.17
 
 # To use a specific branch
 FROM evermadefi/dockerpress-base-image:master
 
 # To use a specific commit hash
-FROM evermadefi/dockerpress-base-image:7ebaf2867604be3212cab697694e55b577d6f019
+FROM evermadefi/dockerpress-base-image:93233ddf75072565d23cc86c8a4583b16c8f4356
 
 # To use GitHub Container Registry instead of Docker Hub (you can use all the same tags described above)
-FROM ghcr.io/evermade/dockerpress-base-image:2.0.16
+FROM ghcr.io/evermade/dockerpress-base-image:2.0.17
 ```
 
 To simply just pull the image or update a stale local copy, run the `docker pull` command like so with the tag you wish you pull:
 
-`docker pull evermadefi/dockerpress-base-image:2.0.16`
+`docker pull evermadefi/dockerpress-base-image:2.0.17`
 
 And for GitHub Container Registry, same thing:
 
-`docker pull ghcr.io/evermade/dockerpress-base-image:2.0.16`
+`docker pull ghcr.io/evermade/dockerpress-base-image:2.0.17`
 
 And enjoy!
-
 
 ## Contributing
 

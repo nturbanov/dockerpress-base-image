@@ -30,6 +30,12 @@ RUN set -ex; \
 		libwebp-dev \
 		libzip-dev \
 		\
+		# PHP ImageMagick extension dependencies
+		libmagickwand-dev \
+		\
+		# PDF preview rendering for WordPress
+		ghostscript \
+		\
 		# Nginx
 		nginx \
 		libnginx-mod-http-headers-more-filter \
@@ -70,6 +76,10 @@ RUN set -ex; \
 		opcache \
 		zip \
 	; \
+	\
+	# Install PHP ImageMagick extension
+	pecl install imagick-3.7.0; \
+	docker-php-ext-enable imagick; \
 	\
 	# Cleanup
 	rm -rf /tmp/pear /var/lib/apt/lists/*; \

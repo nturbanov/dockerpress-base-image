@@ -74,6 +74,7 @@ RUN set -ex; \
 	\
 	# Compile and install PHP extensions
 	docker-php-ext-install -j "$( nproc )" \
+		bcmath \
 		exif \
 		gd \
 		intl \

@@ -87,6 +87,10 @@ RUN set -ex; \
 	pecl install imagick-3.7.0; \
 	docker-php-ext-enable imagick; \
 	\
+	# Install PHP Igbinary extension
+	pecl install igbinary; \
+	docker-php-ext-enable igbinary; \
+	\
 	# Cleanup
 	rm -rf /tmp/pear /var/lib/apt/lists/*; \
 	\

@@ -30,6 +30,9 @@ RUN set -ex; \
 		libwebp-dev \
 		libzip-dev \
 		\
+		# PHP Intl extension dependencies
+		libicu-dev \
+		\
 		# PHP ImageMagick extension dependencies
 		libmagickwand-dev \
 		\
@@ -72,6 +75,7 @@ RUN set -ex; \
 	# Compile and install PHP extensions
 	docker-php-ext-install -j "$( nproc )" \
 		gd \
+		intl \
 		mysqli \
 		opcache \
 		zip \

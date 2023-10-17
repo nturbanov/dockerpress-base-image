@@ -87,13 +87,13 @@ RUN set -ex; \
 		zip \
 	; \
 	pecl install \
-		imagick-3.7.0 \
 		igbinary \
+		imagick-3.7.0 \
 		redis \
 	; \
 	docker-php-ext-enable \
-		imagick \
 		igbinary \
+		imagick \
 		redis \
 	; \
 	rm -rf /tmp/pear; \

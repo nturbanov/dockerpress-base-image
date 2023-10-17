@@ -2,7 +2,7 @@ FROM php:8.0.30-fpm-bullseye
 
 LABEL maintainer="Evermade"
 
-# install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/server-environment/#php-extensions)
+# Install the PHP extensions we need (https://make.wordpress.org/hosting/handbook/server-environment/#php-extensions)
 RUN set -ex; \
 	\
 	# Nginx apt dependencies
@@ -20,22 +20,8 @@ RUN set -ex; \
 	# Upgrade apt packages
 	apt-get upgrade -y; \
 	\
-	# Install new apt packages
+	# Install persistent apt packages
 	apt-get install -y --no-install-recommends \
-		\
-		# PHP GD extension dependencies
-		libfreetype6-dev \
-		libjpeg-dev \
-		libpng-dev \
-		libwebp-dev \
-		libzip-dev \
-		\
-		# PHP Intl extension dependencies
-		libicu-dev \
-		\
-		# PHP ImageMagick extension dependencies
-		libmagickwand-dev \
-		\
 		# PDF preview rendering for WordPress
 		ghostscript \
 		\
@@ -65,6 +51,24 @@ RUN set -ex; \
 		python3-certbot-nginx \
 	; \
 	\
+	savedAptMark="$(apt-mark showmanual)"; \
+	\
+	# Install build dependencies to compile PHP extensions
+	apt-get install -y --no-install-recommends \
+		# gd
+		libfreetype6-dev \
+		libjpeg-dev \
+		libpng-dev \
+		libwebp-dev \
+		libzip-dev \
+		\
+		# intl
+		libicu-dev \
+		\
+		# imagick
+		libmagickwand-dev \
+	; \
+	\
 	# Configure PHP GD extension
 	docker-php-ext-configure gd \
 		--with-freetype \
@@ -82,21 +86,46 @@ RUN set -ex; \
 		opcache \
 		zip \
 	; \
+	pecl install \
+		imagick-3.7.0 \
+		igbinary \
+		redis \
+	; \
+	docker-php-ext-enable \
+		imagick \
+		igbinary \
+		redis \
+	; \
+	rm -rf /tmp/pear; \
 	\
-	# Install PHP ImageMagick extension
-	pecl install imagick-3.7.0; \
-	docker-php-ext-enable imagick; \
+	# Some misbehaving extensions end up outputting to stdout 🙈 (https://github.com/docker-library/wordpress/issues/669#issuecomment-993945967)
+	out="$(php -r 'exit(0);')"; \
+	[ -z "$out" ]; \
+	err="$(php -r 'exit(0);' 3>&1 1>&2 2>&3)"; \
+	[ -z "$err" ]; \
 	\
-	# Install PHP Igbinary extension
-	pecl install igbinary; \
-	docker-php-ext-enable igbinary; \
+	extDir="$(php -r 'echo ini_get("extension_dir");')"; \
+	[ -d "$extDir" ]; \
 	\
-	# Install PHP Redis extension
-	pecl install redis; \
-	docker-php-ext-enable redis; \
+	# Reset apt-mark's "manual" list so that "purge --auto-remove" will remove all build dependencies
+	apt-mark auto '.*' > /dev/null; \
+	apt-mark manual $savedAptMark; \
+	ldd "$extDir"/*.so \
+		| awk '/=>/ { so = $(NF-1); if (index(so, "/usr/local/") == 1) { next }; gsub("^/(usr/)?", "", so); print so }' \
+		| sort -u \
+		| xargs -r dpkg-query --search \
+		| cut -d: -f1 \
+		| sort -u \
+		| xargs -rt apt-mark manual; \
 	\
-	# Cleanup
-	rm -rf /tmp/pear /var/lib/apt/lists/*; \
+	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+	rm -rf /var/lib/apt/lists/*; \
+	\
+	! { ldd "$extDir"/*.so | grep 'not found'; }; \
+	\
+	# Check for output like "PHP Warning:  PHP Startup: Unable to load dynamic library 'foo' (tried: ...)
+	err="$(php --version 3>&1 1>&2 2>&3)"; \
+	[ -z "$err" ]; \
 	\
 	# Install WP-CLI
 	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \

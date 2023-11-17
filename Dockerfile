@@ -1,4 +1,4 @@
-FROM php:8.0.30-fpm-bullseye
+FROM php:8.1.25-fpm-bullseye
 
 LABEL maintainer="Evermade"
 
@@ -67,6 +67,8 @@ RUN set -ex; \
 		\
 		# imagick
 		libmagickwand-dev \
+		# PostgreSQL
+		libpq-dev \
 	; \
 	\
 	# Configure PHP GD extension
@@ -85,15 +87,18 @@ RUN set -ex; \
 		mysqli \
 		opcache \
 		zip \
+		pdo \
+		pgsql \
+		pdo_pgsql \
 	; \
 	pecl install \
-		igbinary \
 		imagick-3.7.0 \
+		igbinary \
 		redis \
 	; \
 	docker-php-ext-enable \
-		igbinary \
 		imagick \
+		igbinary \
 		redis \
 	; \
 	rm -rf /tmp/pear; \
